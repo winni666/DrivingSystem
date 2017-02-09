@@ -1,0 +1,1 @@
+﻿window.api = "//localhost:8486/";

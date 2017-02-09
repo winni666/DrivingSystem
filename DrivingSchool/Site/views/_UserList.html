@@ -1,0 +1,64 @@
+﻿<div class="page-content">
+    <div class="page-header">
+        <h1>
+            用户列表
+            <small>
+                <i class="icon-double-angle-right"></i>
+                查看
+            </small>
+        </h1>
+    </div>
+    <div style="margin-bottom:10px;">
+        <form class="form-search">
+            <span class="input-icon align-middle">
+                <i class="icon-search"></i>
+                <input type="text" class="search-query" placeholder="请输入用户名" ng-model="searchUser">
+                <i class="icon-remove" style="left:158px;" ng-click="clear()" ng-show="searchUser!=''&&searchUser!=null"></i>
+            </span>
+            <button class="btn btn-sm" onclick="return false;" style="height:28px;" ng-click="select()">查询</button>
+        </form>
+    </div>
+
+    <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th class="center">
+                    序号
+                </th>
+                <th>用户名</th>
+                <th>密码</th>
+                <th>权限</th>
+                <th class="hidden-480">所属站点</th>
+                <th class="hidden-480">操作</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr ng-repeat="item in userlist">
+                <td class="center">
+                    {{$index+1}}
+                </td>
+
+                <td>
+                    <a href="#">{{item.user_Name}}</a>
+                </td>
+                <td>{{item.user_Password}}</td>
+                <td class="hidden-480">{{item.user_Type}}</td>
+                <td>{{item.user_Point}}</td>
+                <td>
+                    <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+                        <button class="btn btn-xs btn-info" ng-click="editpage(item.user_Id)">
+                            <i class="icon-edit bigger-120"></i>
+                        </button>
+
+                        <button class="btn btn-xs btn-danger" ng-click="_deleteuser(item.user_Name)">
+                            <i class="icon-trash bigger-120"></i>
+                        </button>
+                    </div>
+
+                   
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
