@@ -13,4 +13,12 @@ app.controller('studentlistController', function ($location, $scope, $http) {
     $scope.addStudent = function () {
 
     }
+
+    $("#studentAdd").validate({
+        submitHandler: function () {
+            var data = new FormData(document.getElementById("studentAdd"));
+
+
+        }
+    })
 })

@@ -98,15 +98,18 @@
                 <td>
                     <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
                         <button class="blue btn btn-xs btn-warning">
-                            <i class="icon-zoom-in bigger-120"></i>
+                            <i class="icon-zoom-in bigger-120" title="查看信息"></i>
                         </button>
 
                         <button class="btn btn-xs btn-info" ng-click="editpage(item.user_Id)">
-                            <i class="icon-edit bigger-120"></i>
+                            <i class="icon-edit bigger-120" title="修改信息"></i>
                         </button>
 
                         <button class="btn btn-xs btn-danger" ng-click="_deleteuser(item.user_Name)">
-                            <i class="icon-trash bigger-120"></i>
+                            <i class="icon-trash bigger-120" title="删除学员"></i>
+                        </button>
+                        <button class="btn btn-xs btn-success">
+                            <i class="icon-ok bigger-120" title="成绩录入"></i>
                         </button>
                     </div>
 
