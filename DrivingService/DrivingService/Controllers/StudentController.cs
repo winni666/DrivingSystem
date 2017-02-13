@@ -50,18 +50,18 @@ namespace DrivingService.Controllers
             var list = db.T("select * from students where Id={0}", Id).ExecuteDynamicObject();
             return Content(JsonConvert.SerializeObject(list), "application/json");
         }
-        public object Edit(Student students)
-        {
-            dynamic student = db.T("select count(*) from students where Name={0}", students.Name).ExecuteScalar();
-            dynamic self = db.T("select * from students where Id={0}", students.Id).ExecuteDynamicObject();
-            if (student > 0 && (string)self.Name != students.Name)
-            {
-                return Json(new { success = false, reason = "学员名称已存在！" }, JsonRequestBehavior.AllowGet);
-            }
-            else
-            {
-                db.T("update students set Name = {0},")
-            }
-        }
+        //public object Edit(Student students)
+        //{
+        //    dynamic student = db.T("select count(*) from students where Name={0}", students.Name).ExecuteScalar();
+        //    dynamic self = db.T("select * from students where Id={0}", students.Id).ExecuteDynamicObject();
+        //    if (student > 0 && (string)self.Name != students.Name)
+        //    {
+        //        return Json(new { success = false, reason = "学员名称已存在！" }, JsonRequestBehavior.AllowGet);
+        //    }
+        //    else
+        //    {
+        //        db.T("update students set Name = {0},")
+        //    }
+        //}
     }
 }

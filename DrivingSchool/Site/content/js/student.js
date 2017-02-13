@@ -41,7 +41,7 @@ app.controller('studentlistController', function ($location, $scope, $http) {
         $location.path('/editstudent/' + Id);
     }
     //添加学员
-        $("#studentAdd").validate({
+    $("#studentAdd").validate({
         submitHandler: function (form) {
             var reg = /^1\d{10}$/;
             if (reg.test($("#phoneInput").val()) == false) {
@@ -49,17 +49,17 @@ app.controller('studentlistController', function ($location, $scope, $http) {
                 return;
             }
             //var data = new FormData(document.getElementById("studentAdd"));
-            $http.get(api+"/student/Add",{
+            $http.get(api + "/student/Add", {
                 params: {
-                    Name:$scope.studentData.Name ,
-                    Sex:$scope.studentData.Sex ,
+                    Name: $scope.studentData.Name,
+                    Sex: $scope.studentData.Sex,
                     Age: $scope.studentData.Age,
-                    Phone:$scope.studentData.Phone ,
+                    Phone: $scope.studentData.Phone,
                     CardId: $scope.studentData.CardId,
                     SignPoint: $scope.studentData.SignPoint,
                     Photo: $scope.studentData.Photo,
-                    IsTuition:$scope.studentData.IsTuition,
-                    State:$scope.studentData.State,
+                    IsTuition: $scope.studentData.IsTuition,
+                    State: $scope.studentData.State,
                     SignDriving: $scope.studentData.SignDriving,
                     Remarks: $scope.studentData.Remarks,
                 }
@@ -74,6 +74,16 @@ app.controller('studentlistController', function ($location, $scope, $http) {
 
         }
     })
+    //查看
+    $scope.showModal = false;
+    $scope.viewStudent = function () {
+        $scope.showModal = true;
+        //请求数据
+    }
+    $scope.cancel = function () {
+        $scope.showModal = false;
+    }
+
 })
 
 app.controller('studentEditController', function ($location, $scope, $http, $routeParams) {
@@ -82,6 +92,3 @@ app.controller('studentEditController', function ($location, $scope, $http, $rou
 })
 
 
-//$("#bootbox-confirm").click(function () {
-//    $("#viewStudent").css('display', null);
-//})

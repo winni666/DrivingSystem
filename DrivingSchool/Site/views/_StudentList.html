@@ -97,7 +97,7 @@
                 <td>{{item.SignDate}}</td>
                 <td>
                     <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-                        <button class="blue btn btn-xs btn-warning" id="bootbox-confirm">
+                        <button class="blue btn btn-xs btn-warning" id="bootbox-confirm" ng-click="viewStudent()">
                             <i class="icon-zoom-in bigger-120" title="查看信息"></i>
                         </button>
 
@@ -118,11 +118,11 @@
             </tr>
         </tbody>
     </table>
-    <!--<div id="viewStudent" class="bootbox modal fade in" tabindex="-1" role="dialog" aria-hidden="false" style="display: block;">
+    <div id="viewStudent" class="bootbox modal fade in" tabindex="-1" role="dialog" aria-hidden="false" ng-class="{'show':showModal==true}">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="bootbox-close-button close">×</button>
+                    <button type="button" class="bootbox-close-button close" ng-click="cancel()">×</button>
                     <h4 class="modal-title">What is your name?</h4>
                 </div>
                 <div class="modal-body">
@@ -134,10 +134,9 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button data-bb-handler="cancel" type="button" class="btn btn-default">Cancel</button>
-                    <button data-bb-handler="confirm" type="button" class="btn btn-primary">OK</button>
+                    <button data-bb-handler="confirm" type="button" class="btn btn-primary" ng-click="cancel()">OK</button>
                 </div>
             </div>
         </div>
-    </div>-->
+    </div>
 </div>
