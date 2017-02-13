@@ -140,7 +140,6 @@ C:\git\DrivingSystem\DrivingService\DrivingService\bin\zh-Hans\System.Web.Webpag
 C:\git\DrivingSystem\DrivingService\DrivingService\bin\zh-Hans\System.Web.Webpages.Razor.resources.dll
 C:\git\DrivingSystem\DrivingService\DrivingService\bin\zh-Hans\System.Web.Helpers.resources.dll
 C:\git\DrivingSystem\DrivingService\DrivingService\bin\zh-Hans\System.Web.Mvc.resources.dll
-C:\git\DrivingSystem\DrivingService\DrivingService\obj\Debug\DrivingService.csprojResolveAssemblyReference.cache
 C:\git\DrivingSystem\DrivingService\DrivingService\obj\Debug\DrivingService.dll
 C:\git\DrivingSystem\DrivingService\DrivingService\obj\Debug\DrivingService.pdb
 E:\Program\DrivingService\DrivingService\bin\roslyn\csc.exe
@@ -194,3 +193,4 @@ E:\Program\DrivingService\DrivingService\bin\zh-Hans\System.Web.Helpers.resource
 E:\Program\DrivingService\DrivingService\bin\zh-Hans\System.Web.Mvc.resources.dll
 E:\Program\DrivingService\DrivingService\obj\Debug\DrivingService.dll
 E:\Program\DrivingService\DrivingService\obj\Debug\DrivingService.pdb
+C:\git\DrivingSystem\DrivingService\DrivingService\obj\Debug\DrivingService.csprojResolveAssemblyReference.cache

@@ -25,7 +25,7 @@ namespace DrivingService.Controllers
 
             var signtime = DateTime.Now;
 
-            var user = "文丽";
+            var user = "文丽";//登记用户，photo？
 
             if (studentcount > 0)
                 return Json(new { success = false, reason = "学员名称已经存在！" }, JsonRequestBehavior.AllowGet);
@@ -36,6 +36,31 @@ namespace DrivingService.Controllers
                 db.T("insert into students(Id, Name, Sex, Age, Phone, CardId, SignDate, SignPoint, Photo, IsTuition, State, SignDriving, SignUser, Remarks) values({...})", uid, student.Name, student.Sex, student.Age, student.Phone, student.CardId, signtime, student.SignPoint, student.Photo, student.IsTuition, student.State, student.SignDriving, user, student.Remarks).Execute();
 
                 return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public object Delete(string Name)
+        {
+            db.T("DELETE FROM students WHERE Name={0} ", Name).Execute();
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public object Info(string Id)
+        {
+            var list = db.T("select * from students where Id={0}", Id).ExecuteDynamicObject();
+            return Content(JsonConvert.SerializeObject(list), "application/json");
+        }
+        public object Edit(Student students)
+        {
+            dynamic student = db.T("select count(*) from students where Name={0}", students.Name).ExecuteScalar();
+            dynamic self = db.T("select * from students where Id={0}", students.Id).ExecuteDynamicObject();
+            if (student > 0 && (string)self.Name != students.Name)
+            {
+                return Json(new { success = false, reason = "学员名称已存在！" }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                db.T("update students set Name = {0},")
             }
         }
     }

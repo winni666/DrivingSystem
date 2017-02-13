@@ -18,6 +18,8 @@ app.controller('userlistController', function ($location, $scope, $http) {
     };
     //删除管理员
     $scope._deleteuser = function (username) {
+       // alert("确定删除吗？");
+
         $http.get(api + "/user/delete", {
             params: {
                 user_Name: username

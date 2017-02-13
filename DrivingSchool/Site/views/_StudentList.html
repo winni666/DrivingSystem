@@ -12,7 +12,7 @@
         <form class="form-search">
             <span class="input-icon align-middle">
                 <!--<i class="icon-search"></i>-->
-                <input type="text" class="search-query" placeholder="学员姓名" ng-model="searchstudent"style="font-size:13px;height:30px;">
+                <input type="text" class="search-query" placeholder="学员姓名" ng-model="searchstudent" style="font-size:13px;height:30px;">
                 <!--<i class="icon-remove" style="left:158px;" ng-click="clear()" ng-show="searchUser!=''&&searchUser!=null"></i>-->
             </span>
             <span>
@@ -93,29 +93,51 @@
                     <a href="#">{{item.IsTuition}}</a>
                 </td>
                 <td>{{item.SignDriving}}</td>
-                <td class="hidden-480">{{item.SignDate}}</td>
-                <td>{{item.State}}</td>
+                <td class="hidden-480">{{item.State}}</td>
+                <td>{{item.SignDate}}</td>
                 <td>
                     <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-                        <button class="blue btn btn-xs btn-warning">
+                        <button class="blue btn btn-xs btn-warning" id="bootbox-confirm">
                             <i class="icon-zoom-in bigger-120" title="查看信息"></i>
                         </button>
 
-                        <button class="btn btn-xs btn-info" ng-click="editpage(item.user_Id)">
+                        <button class="btn btn-xs btn-info" ng-click="editpage(item.Id)">
                             <i class="icon-edit bigger-120" title="修改信息"></i>
                         </button>
 
-                        <button class="btn btn-xs btn-danger" ng-click="_deleteuser(item.user_Name)">
+                        <button class="btn btn-xs btn-danger" ng-click="_deletestudent(item.Name)">
                             <i class="icon-trash bigger-120" title="删除学员"></i>
                         </button>
                         <button class="btn btn-xs btn-success">
                             <i class="icon-ok bigger-120" title="成绩录入"></i>
                         </button>
+
+                        <!--<button class="btn btn-info" id="bootbox-confirm">Confirm</button>-->
                     </div>
-
-
                 </td>
             </tr>
         </tbody>
     </table>
+    <!--<div id="viewStudent" class="bootbox modal fade in" tabindex="-1" role="dialog" aria-hidden="false" style="display: block;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="bootbox-close-button close">×</button>
+                    <h4 class="modal-title">What is your name?</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="bootbox-body">
+                        <form class="bootbox-form">
+                            <input class="bootbox-input form-control" autocomplete="off" type="text">
+                        </form>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button data-bb-handler="cancel" type="button" class="btn btn-default">Cancel</button>
+                    <button data-bb-handler="confirm" type="button" class="btn btn-primary">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>-->
 </div>

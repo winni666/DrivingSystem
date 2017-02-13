@@ -26,5 +26,9 @@
             templateUrl: '/views/_StudentAdd.html',
             controller: 'studentlistController',
         })
+         .when('/editstudent/:Id', {
+             templateUrl: '/views/_StudentEdit.html',
+             controller: 'studentEditController',
+         })
     $locationProvider.html5Mode(true);//启用html5模式
 }]);
