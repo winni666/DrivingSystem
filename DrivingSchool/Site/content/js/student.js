@@ -15,9 +15,24 @@ app.controller('studentlistController', function ($location, $scope, $http) {
     }
 
     $("#studentAdd").validate({
-        submitHandler: function () {
+        submitHandler: function (form) {
+            var reg = /^1\d{10}$/;
+            if (reg.test($("#phoneInput").val()) == false) {
+                alert("请输入正确的手机号码！");
+                return;
+            }
+            
+
             var data = new FormData(document.getElementById("studentAdd"));
 
+            $http.get(api + "/student/Add", { params: data }).success(function (result) {
+                if (result.success == true) {
+                    alert("添加成功！");
+                    $location.path("/studentlist");
+                }
+                else
+                    alert(result.reason);
+            })
 
         }
     })

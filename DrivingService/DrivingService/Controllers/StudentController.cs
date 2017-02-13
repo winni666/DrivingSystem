@@ -19,12 +19,11 @@ namespace DrivingService.Controllers
 
             return Content(JsonConvert.SerializeObject(list), "application/json");
         }
-
         public object Add(Student student)
         {
             dynamic studentcount = db.T("select count(*) from students where Name = {0}", student.Name).ExecuteScalar();
 
-            var signtime = DateTime.Now.ToString("yyyy-MM-dd");
+            var signtime = DateTime.Now;
 
             var user = "文丽";
 
