@@ -1,0 +1,165 @@
+﻿<div class="page-content" id="Teacher">
+    <div class="page-header">
+        <h1>
+            学车管理
+            <small>
+                <i class="icon-double-angle-right"></i>
+                学车记录
+            </small>
+        </h1>
+    </div>
+    <div style="margin-bottom:10px;">
+        <form class="form-search">
+            <span class="input-icon align-middle">
+                <input type="text" class="search-query" ng-model="student" placeholder="学员名或教练名" style="font-size:13px;height:30px;">
+                <i class="icon-remove" style="left:158px;" ng-click="clear()" ng-show="student!=''&&student!=null"></i>
+            </span>
+            <button class="btn btn-sm" onclick="return false;" style="height:28px;" ng-click="select()">查询</button>
+        </form>
+    </div>
+
+    <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>姓名</th>
+                <th>驾驶证</th>
+                <th>科目</th>
+                <th>车牌</th>
+                <th>车型</th>
+                <th>教练</th>
+                <th>场地</th>
+                <th>日期</th>
+                <th>时间</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr ng-repeat="item in studyList">
+                <td>{{$index+1}}</td>
+                <td>{{item.Name}}</td>
+                <td>{{item.Study_driving}}</td>
+                <td>{{item.Study_subject}}</td>
+                <td>{{item.Study_carnumber}}</td>
+                <td>{{item.Study_carname}}</td>
+                <td>{{item.Teacher_Name}}</td>
+                <td>{{item.study_room}}</td>
+                <td>{{item.Study_date}}</td>
+                <td>{{item.Study_time}}</td>
+                <td>{{item.Study_sate}}</td>
+                <td>
+                    <!--<button class="btn btn-xs btn-info" ng-click="editbox(item.Teacher_Id)">
+                        <i class="icon-edit bigger-120" title="修改信息"></i>
+                    </button>
+                    <button class="btn btn-xs btn-danger" ng-click="_delete(item.Teacher_Id)">
+                        <i class="icon-trash bigger-120" title="删除教练"></i>
+                    </button>-->
+                    <div class="btn-group" ng-class="{'hide':item.Study_sate == '已完成'}">
+                        <button class="btn-xs Physical" ng-click="delete(item.Study_Id)">取消</button>
+                    </div>
+                    <div class="btn-group" ng-class="{'hide':item.Study_sate == '已完成'}">
+                        <button class="btn-xs Physical" ng-click="finish(item.Study_Id)">完成</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="bootbox modal fade in" tabindex="-1" role="dialog" aria-hidden="false" ng-class="{'show':showEdit==true}" style="background: rgba(0,0,0,.7);">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="bootbox-close-button close" ng-click="cancel()">×</button>
+                    <h4 class="modal-title">教练编辑</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="bootbox-body">
+                        <form class="bootbox-form" style="line-height:30px;">
+                            <span>教练名：</span>
+                            <span class="input-icon align-middle">
+                             <input type="text" class="search-query input_width" ng-model="teacherinfo.Teacher_Name" disabled="disabled">
+                            </span>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="bootbox-body">
+                        <form class="bootbox-form" style="line-height:30px;">
+                            <span>驾驶证：</span>
+                            <span class="input-icon align-middle">
+                                <select class="form-control input_width" ng-model="teacherinfo.Teacher_Driving">
+                                    <option value="">请选择</option>
+                                    <option value="A1">A1</option>
+                                    <option value="A2">A2</option>
+                                    <option value="A3">A3</option>
+                                    <option value="B1">B1</option>
+                                    <option value="B2">B2</option>
+                                    <option value="C1">C1</option>
+                                    <option value="C2">C2</option>
+                                    <option value="C3">C3</option>
+                                    <option value="C4">C4</option>
+                                </select>
+                            </span>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="bootbox-body">
+                        <form class="bootbox-form" style="line-height:30px;">
+                            <span>科目：</span>
+                            <span class="input-icon align-middle">
+                                    <select class="form-control input_width" ng-model="teacherinfo.Teacher_Subject">
+                                        <option value="">请选择</option>
+                                        <option value="科目二">科目二</option>
+                                        <option value="科目三">科目三</option>
+                                        <option value="科目四">科目四</option>
+                                    </select>
+                            </span>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="bootbox-body">
+                        <form class="bootbox-form" style="line-height:30px;">
+                            <span>时间：</span>
+                            <span class="input-icon align-middle">
+                                <select class="form-control input_width" ng-model="teacherinfo.Teacher_Time">
+                                    <option value="">请选择</option>
+                                    <option value="上午">上午</option>
+                                    <option value="下午">下午</option>
+                                </select>
+                            </span>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="modal-body">
+                    <div class="bootbox-body">
+                        <form class="bootbox-form" style="line-height:30px;">
+                            <span>身份证：</span>
+                            <span class="input-icon align-middle">
+                                <input type="text" class="search-query input_width" ng-model="teacherinfo.Teacher_number" disabled="disabled">
+                            </span>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="bootbox-body">
+                        <form class="bootbox-form" style="line-height:30px;">
+                            <span>备注：</span>
+                            <span class="input-icon align-middle">
+                                <textarea type="text" class="search-query input_width textarea_height" ng-model="teacherinfo.Teacher_Remark"></textarea>
+                            </span>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button data-bb-handler="confirm" type="button" class="btn btn-primary" ng-click="edit(teacherinfo.Teacher_Id)">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

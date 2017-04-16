@@ -1,0 +1,59 @@
+﻿<div class="page-content" id="Student_Is">
+    <div class="page-header">
+        <h1>
+            学员管理
+            <small>
+                <i class="icon-double-angle-right"></i>
+                体检/缴费
+            </small>
+        </h1>
+    </div>
+    <div style="margin-bottom:10px;">
+        <form class="form-search">
+            <span class="input-icon align-middle">
+                <input type="text" class="search-query" ng-model="Is_student" placeholder="学员姓名" style="font-size:13px;height:30px;">
+                <i class="icon-remove" style="left:158px;" ng-click="clear()" ng-show="Is_student!=''&&Is_student!=null"></i>
+
+            </span>
+            <!--<span class="input-icon align-middle">
+            <input type="text" class="search-query" placeholder="身份证" style="font-size:13px;height:30px;">
+        </span>-->
+
+            <button class="btn btn-sm" onclick="return false;" style="height:28px;" ng-click="selectIs()">查询</button>
+        </form>
+    </div>
+
+    <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>学员姓名</th>
+                <th>性别</th>
+                <th>身份证号</th>
+                <th>体检</th>
+                <th>已交学费</th>
+                <th>报考类型</th>
+                <th class="hidden-480">操作</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr ng-repeat="item in not_tuition_physical">
+                <td class="center">{{$index+1}}</td>
+                <td>{{item.Name}}</td>
+                <td>{{item.Sex}}</td>
+                <td class="hidden-480">{{item.CardId}}</td>
+                <td>{{item.IsPhysical}}</td>
+                <td>{{item.IsTuition}}</td>
+                <td>{{item.SignDriving}}</td>
+                <td>
+                    <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+                        <button class="btn-xs Physical" ng-click="editPhysical(item.Id)" ng-if="item.IsPhysical=='否'">体检</button>
+                        <button class="btn-xs Tuition" ng-if="item.IsTuition=='否'" ng-click="editTuition(item.Id)">缴费</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

@@ -1,0 +1,93 @@
+﻿<div class="page-content">
+    <div class="page-header">
+        <h1>
+            考试管理
+            <small>
+                <i class="icon-double-angle-right"></i>
+                查询/录入成绩
+            </small>
+        </h1>
+    </div>
+    <div style="margin-bottom:10px;">
+        <form class="form-search">
+            <span class="input-icon align-middle">
+                <input type="text" class="search-query" placeholder="姓名" ng-model="searchstudent" style="font-size:13px;height:30px;">
+                <i class="icon-remove" style="left:158px;" ng-click="clearName()" ng-show="searchstudent!=''&&searchstudent!=null"></i>
+            </span>
+            <span>
+                <select ng-model="subject" style="width:185px;">
+                    <option value="">请选择科目</option>
+                    <option value="科目一">科目一</option>
+                    <option value="科目二">科目二</option>
+                    <option value="科目三">科目三</option>
+                    <option value="科目四">科目四</option>
+                    <option value="科目五">科目五</option>
+                </select>
+            </span>
+            <button class="btn btn-sm" onclick="return false;" style="height:28px;" ng-click="select()">查询</button>
+        </form>
+    </div>
+
+    <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>科目</th>
+                <th>分数</th>
+                <th>考场</th>
+                <th>考试时间</th>
+                <th>身份证号</th>
+                <th>驾驶证</th>
+                <th>操作</th>
+                <!--<th class="hidden-480">操作</th>-->
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr ng-repeat="item in testList">
+                <td class="center">{{$index+1}}</td>
+                <td>
+                    <a href="#">{{item.Name}}</a>
+                </td>
+                <td>{{item.TestSubject}}</td>
+                <td class="hidden-480">{{item.TestScore}}</td>
+                <td>{{item.TestRoom}}</td>
+                <td>{{item.TestTime}}</td>
+                <td>{{item.CardId}}</td>
+                <td>{{item.drivingtype}}</td>
+                <td>
+                    <!--<div class="btn-group" ng-class="{'hide':item.TestScore!=0}">-->
+                    <div class="btn-group" ng-show="item.TestScore==0">
+                        <button class="btn-xs Physical" ng-click="showScore(item.TestID,item.CardId,item.Name,item.drivingtype,item.TestSubject)">录入成绩</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="bootbox modal fade in" tabindex="-1" role="dialog" aria-hidden="false" ng-class="{'show':showAddScore==true}" style="background: rgba(0,0,0,.7);">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="bootbox-close-button close" ng-click="cancel()">×</button>
+                    <h4 class="modal-title">录入成绩</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="bootbox-body">
+                        <form class="bootbox-form" style="line-height:30px;">
+                            <span class="input-icon align-middle">
+                                <input type="text" class="search-query" placeholder="分数" ng-model="TestScore" style="font-size:13px;height:30px;padding-left:5px;">
+                            </span>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button data-bb-handler="confirm" type="button" class="btn btn-primary" ng-click="add()">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

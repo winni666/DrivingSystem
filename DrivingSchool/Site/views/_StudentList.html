@@ -11,55 +11,12 @@
     <div style="margin-bottom:10px;">
         <form class="form-search">
             <span class="input-icon align-middle">
-                <!--<i class="icon-search"></i>-->
                 <input type="text" class="search-query" placeholder="学员姓名" ng-model="searchstudent" style="font-size:13px;height:30px;">
-                <!--<i class="icon-remove" style="left:158px;" ng-click="clear()" ng-show="searchUser!=''&&searchUser!=null"></i>-->
+                <i class="icon-remove" style="left:158px;" ng-click="clear()" ng-show="searchstudent!=''&&searchstudent!=null"></i>
             </span>
-            <span>
-                <select ng-model="signPoint" style="width:185px;">
-                    <option value="">请选择报名点</option>
-                    <option value="普通">桂林</option>
-                    <option value="管理员">深圳</option>
-                    <option value="管理员">广州</option>
-                </select>
-            </span>
-            <span>
-                <select ng-model="isTuition" style="width:185px;">
-                    <option value="">是否已交学费</option>
-                    <option value="true">是</option>
-                    <option value="false">否</option>
-                </select>
-            </span>
-            <span>
-                <select ng-model="state" style="width:185px;">
-                    <option value="">状态</option>
-                    <option value="true">全部通过</option>
-                    <option value="false">至少有一科没有通过</option>
-                </select>
-            </span>
-            <span>
-                <select ng-model="signType" style="width:185px;">
-                    <option value="">报考类型</option>
-                    <option value="A1">A1</option>
-                    <option value="A2">A2</option>
-                    <option value="A3">A3</option>
-                    <option value="B1">B1</option>
-                    <option value="B2">B2</option>
-                    <option value="C1">C1</option>
-                    <option value="C2">C2</option>
-                    <option value="C3">C3</option>
-                    <option value="C4">C4</option>
-                    <option value="D">D</option>
-                    <option value="E">E</option>
-                    <option value="F">F</option>
-                    <option value="M">M</option>
-                    <option value="N">N</option>
-                    <option value="P">P</option>
-                </select>
-            </span>
-            <span class="input-icon align-middle">
+            <!--<span class="input-icon align-middle">
                 <input type="text" class="search-query" placeholder="登记人员" ng-model="registerUser" style="font-size:13px;height:30px;">
-            </span>
+            </span>-->
             <button class="btn btn-sm" onclick="return false;" style="height:28px;" ng-click="select()">查询</button>
         </form>
     </div>
@@ -72,9 +29,10 @@
                 <th>性别</th>
                 <th>电话号码</th>
                 <th>报名点</th>
-                <th>是否已交学费</th>
+                <th>体检</th>
+                <th>已交学费</th>
                 <th>报考类型</th>
-                <th>状态</th>
+                <!--<th>状态</th>-->
                 <th class="hidden-480">报名时间</th>
                 <th class="hidden-480">操作</th>
             </tr>
@@ -83,24 +41,20 @@
         <tbody>
             <tr ng-repeat="item in studentlist">
                 <td class="center">{{$index+1}}</td>
-                <td>
-                    <a href="#">{{item.Name}}</a>
-                </td>
+                <td>{{item.Name}}</td>
                 <td>{{item.Sex}}</td>
                 <td class="hidden-480">{{item.Phone}}</td>
                 <td>{{item.SignPoint}}</td>
-                <td>
-                    <a href="#">{{item.IsTuition}}</a>
-                </td>
+                <td>{{item.IsPhysical}}</td>
+                <td>{{item.IsTuition}}</td>
                 <td>{{item.SignDriving}}</td>
-                <td class="hidden-480">{{item.State}}</td>
-                <td>{{item.SignDate}}</td>
+                <!--<td class="hidden-480">{{item.State}}</td>-->
+                <td>{{item.SignDate |date:'yyyy-MM-dd'}}</td>
                 <td>
                     <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
-                        <button class="blue btn btn-xs btn-warning" id="bootbox-confirm" ng-click="viewStudent()">
+                        <button class="blue btn btn-xs btn-warning" id="bootbox-confirm" ng-click="viewStudent(item.Id)">
                             <i class="icon-zoom-in bigger-120" title="查看信息"></i>
                         </button>
-
                         <button class="btn btn-xs btn-info" ng-click="editpage(item.Id)">
                             <i class="icon-edit bigger-120" title="修改信息"></i>
                         </button>
@@ -108,27 +62,89 @@
                         <button class="btn btn-xs btn-danger" ng-click="_deletestudent(item.Name)">
                             <i class="icon-trash bigger-120" title="删除学员"></i>
                         </button>
-                        <button class="btn btn-xs btn-success">
+                        <!--<button class="btn btn-xs btn-success" ng-click="addScore(item.Id)">
                             <i class="icon-ok bigger-120" title="成绩录入"></i>
                         </button>
 
-                        <!--<button class="btn btn-info" id="bootbox-confirm">Confirm</button>-->
+                        <button class="btn-xs" style="background-color:#3a87ad;color:#fff;margin-right:1px;">考试
+                        </button>
+                        <button class="btn-xs" style="background-color:#a069c3;color:#fff;">学车
+                        </button>-->
                     </div>
                 </td>
             </tr>
         </tbody>
     </table>
-    <div id="viewStudent" class="bootbox modal fade in" tabindex="-1" role="dialog" aria-hidden="false" ng-class="{'show':showModal==true}">
+    <div id="viewStudent" class="bootbox modal fade in" tabindex="-1" role="dialog" aria-hidden="false" ng-class="{'show':showModal==true}" style="background: rgba(0,0,0,.7);">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="bootbox-close-button close" ng-click="cancel()">×</button>
-                    <h4 class="modal-title">What is your name?</h4>
+                    <h4 class="modal-title">学员信息</h4>
                 </div>
                 <div class="modal-body">
                     <div class="bootbox-body">
-                        <form class="bootbox-form">
-                            <input class="bootbox-input form-control" autocomplete="off" type="text">
+                        <form class="bootbox-form" style="line-height:30px;">
+                            <div>
+                                <img src="../content/person.png" style="width:64px;height:64px;" />
+                            </div>
+                            <div>
+                                <span>姓名：</span>
+                                <span>{{studentInfo[0].Name}}</span>
+                            </div>
+                            <div>
+                                <span>性别：</span>
+                                <span>{{studentInfo[0].Sex}}</span>
+                            </div>
+                            <div>
+                                <span>年龄：</span>
+                                <span>{{studentInfo[0].Age}}</span>
+                            </div>
+                            <div>
+                                <span>电话：</span>
+                                <span>{{studentInfo[0].Phone}}</span>
+                            </div>
+                            <div>
+                                <span>身份证：</span>
+                                <span>{{studentInfo[0].CardId}}</span>
+                            </div>
+                            <div>
+                                <span>报名时间：</span>
+                                <span>{{studentInfo[0].SignDate}}</span>
+                            </div>
+                            <div>
+                                <span>报名点：</span>
+                                <span>{{studentInfo[0].SignPoint}}</span>
+                            </div>
+                            <div>
+                                <span>是否体检：</span>
+                                <span>{{studentInfo[0].IsPhysical}}</span>
+                            </div>
+                            <div>
+                                <span>是否缴费：</span>
+                                <span>{{studentInfo[0].IsTuition}}</span>
+                            </div>
+                            <div>
+                                <span>状态：</span>
+                                <span>{{studentInfo[0].State}}</span>
+                            </div>
+                            <div>
+                                <span>报考驾照：</span>
+                                <span>{{studentInfo[0].SignDriving}}</span>
+                            </div>
+                            <div>
+                                <span>登记人员：</span>
+                                <span>{{studentInfo[0].SignUser}}</span>
+                            </div>
+                            <div ng-repeat="item in studentInfo">
+                                <span>{{item.TestSubject}}：</span>
+                                <span>{{item.TestScore}}</span>
+                            </div>
+
+                            <div>
+                                <span>备注：</span>
+                                <span>{{studentInfo[0].Remarks}}</span>
+                            </div>
                         </form>
                     </div>
                 </div>

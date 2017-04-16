@@ -1,0 +1,54 @@
+﻿
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            系统管理
+            <small>
+                <i class="icon-double-angle-right"></i>
+                修改密码
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+
+    <div class="row">
+        <div class="col-xs-12">
+
+
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 用户名： </label>
+
+                    <div class="col-sm-9">
+                        <input ng-model="username" type="text" id="form-field-1" placeholder="用户名"  class="col-xs-10 col-sm-5" disabled="disabled">
+                    </div>
+                </div>
+
+                <div class="space-4"></div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 旧密码： </label>
+
+                    <div class="col-sm-9">
+                        <input ng-model="oldpassword" type="password" id="form-field-2" placeholder="旧密码" class="col-xs-10 col-sm-5">
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 新密码： </label>
+                    <div class="col-sm-9">
+                        <input ng-model="newpassword" type="password" id="form-field-2" placeholder="新密码" class="col-xs-10 col-sm-5">
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="clearfix form-actions">
+                    <div class="col-md-offset-3 col-md-9">
+                        <button class="btn btn-info" type="button" ng-click="change()">
+                            <i class="icon-ok bigger-110"></i>
+                            提交
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

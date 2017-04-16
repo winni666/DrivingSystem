@@ -38,7 +38,7 @@ namespace DrivingService.Controllers
             dynamic user = db.T("select count(*) from users where user_Name = {0}", user_Name).ExecuteScalar();
 
             if (user > 0)
-                return Json(new { success = false, reason = "用户已经存在！" }, JsonRequestBehavior.AllowGet);
+                return Json(new { success = false, reason = "用户名已经存在！" }, JsonRequestBehavior.AllowGet);
             else
             {
                 var uid = Guid.NewGuid().ToString();
@@ -65,7 +65,7 @@ namespace DrivingService.Controllers
                 return Json(new { success = false, reason = "用户名或者密码错误！" }, JsonRequestBehavior.AllowGet);
             else
             {
-                return Json(new { success = true, userId = user.user_Id.ToString() }, JsonRequestBehavior.AllowGet);
+                return Json(new { success = true, userId = user.user_Id.ToString(),userName = user.user_Name.ToString(), userType = user.user_Type.ToString()}, JsonRequestBehavior.AllowGet);
             }
         }
         public object Edit(string user_Id, string user_Name, string user_Password, string user_Type, string user_Point)
@@ -82,7 +82,7 @@ namespace DrivingService.Controllers
 
             if (user > 0 && (string)self.user_Name != user_Name)
             {
-                return Json(new { success = false, reason = "用户已经存在！" }, JsonRequestBehavior.AllowGet);
+                return Json(new { success = false, reason = "用户名已经存在！" }, JsonRequestBehavior.AllowGet);
             }
             else
             {
@@ -91,7 +91,17 @@ namespace DrivingService.Controllers
             }
 
         }
-
+        public object ChangePassword(string oldpassword, string newpassword, string userid)
+        {
+            var old = db.T("select user_Password from users where user_Id={0}", userid).ExecuteScalar();
+            if ((string)old == oldpassword)
+            {
+                db.T("update users set user_Password={0} where user_Id={1}", newpassword, userid).Execute();
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            else
+            return Json(new { success = false, reason = "输入的旧密码不正确！" }, JsonRequestBehavior.AllowGet);
+        }
         
     }
 }

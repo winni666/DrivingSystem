@@ -1,0 +1,46 @@
+﻿<div class="page-content" id="Student_Is">
+    <div class="page-header">
+        <h1>
+            新闻公告
+            <small>
+                <i class="icon-double-angle-right"></i>
+                新闻列表
+            </small>
+        </h1>
+    </div>
+    <div style="margin-bottom:10px;">
+        <form class="form-search">
+            <span class="input-icon align-middle">
+                <input type="text" class="search-query" ng-model="newstitle" placeholder="新闻标题" style="font-size:13px;height:30px;">
+                <i class="icon-remove" style="left:158px;" ng-click="clear()" ng-show="newstitle!=''&&newstitle!=null"></i>
+            </span>
+            <button class="btn btn-sm" onclick="return false;" style="height:28px;" ng-click="select()">查询</button>
+        </form>
+    </div>
+
+    <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>新闻标题</th>
+
+                <th>发布日期</th>
+                <!--<th ng-if="userType=='管理员'">操作</th>-->
+                <th>操作</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr ng-repeat="item in newsList">
+                <td width="70">{{$index+1}}</td>
+                <td><a ng-click="newdetails(item.news_id);">{{item.news_title}}</a></td>
+                <td width="100">{{item.news_date}}</td>
+                <td width="150">
+                    <button class="btn btn-xs btn-danger" ng-click="_delete(item.news_id)">
+                        <i class="icon-trash bigger-120" title="删除新闻"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

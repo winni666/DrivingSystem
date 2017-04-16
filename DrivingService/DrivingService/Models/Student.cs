@@ -26,5 +26,7 @@ namespace DrivingService.Models
 
         public string SignUser { set; get; }
         public string Remarks { set; get; }
+
+        public string IsPhysical { set; get; }
     }
 }

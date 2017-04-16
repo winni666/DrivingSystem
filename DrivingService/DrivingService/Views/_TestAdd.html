@@ -1,0 +1,97 @@
+﻿
+<div class="page-content" id="test_add">
+    <div class="page-header">
+        <h1>
+            考试管理
+            <small>
+                <i class="icon-double-angle-right"></i>
+                安排考试
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div style="margin-bottom:10px;">
+                <form class="form-search">
+
+                    <span>
+                        <select ng-model="driving" style="width:185px;">
+                            <option value="">驾驶证类型</option>
+                            <option value="A1">A1</option>
+                            <option value="A2">A2</option>
+                            <option value="A3">A3</option>
+                            <option value="B1">B1</option>
+                            <option value="B2">B2</option>
+                            <option value="C1">C1</option>
+                            <option value="C2">C2</option>
+                            <option value="C3">C3</option>
+                            <option value="C4">C4</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                            <option value="F">F</option>
+                            <option value="M">M</option>
+                            <option value="N">N</option>
+                            <option value="P">P</option>
+                        </select>
+                    </span>
+                    <span>
+                        <select id="hdsfhsk" ng-model="subject" style="width:185px;">
+                            <option value="">请选择科目</option>
+                            <option value="科目一">科目一</option>
+                            <option value="科目二">科目二</option>
+                            <option value="科目三">科目三</option>
+                            <option value="科目四">科目四</option>
+                            <option value="科目五">科目五</option>
+                        </select>
+                    </span>
+                    <span>
+                        <select ng-init="isMe='0'" ng-model="isMe" style="width:185px;">
+                            <option value="0">全部学生</option>
+                            <option value="1">我的学生</option>
+
+                        </select>
+                    </span>
+                    <span>
+                        <select ng-model="room" style="width:185px;">
+                            <option value="">请选择场地</option>
+                            <option ng-class="{'hide':subject=='科目二'||subject=='科目三'||subject=='科目四'}" value="17#101">17#101</option>
+                            <option ng-class="{'hide':subject=='科目二'||subject=='科目三'||subject=='科目四'}" value="17#102">17#102</option>
+                            <option ng-class="{'hide':subject=='科目一'||subject=='科目五'}" value="Out-1">Out-1</option>
+                            <option ng-class="{'hide':subject=='科目一'||subject=='科目五'}" value="Out-2">Out-2</option>
+                        </select>
+                    </span>
+                    <span class="input-icon align-middle">
+                        <input type="date" ng-model="date" class="search-query" placeholder="日期" style="font-size:13px;height:30px;">
+                    </span>
+
+                    <!--<button class="btn btn-minier btn-purple" style="height:28px;" ng-click="selectStudent()">选择考试学生</button>-->
+                    <button class="btn btn-sm btn-minier " style="height:28px;width:60px;" ng-click="addtest()">安排考试</button>
+                </form>
+
+                <div id="check_box">
+                    <div class="checkbox checkwidth selectall" ng-class="{'hide':testStudent ==null || testStudent.length == 0}">
+                        <label>
+                            <input name="form-field-checkbox" type="checkbox" class="ace" ng-click="toggleAll()">
+                            <span class="lbl"> 全选</span>
+                        </label>
+                    </div>
+
+                    <div class="checkbox checkwidth" ng-repeat="item in testStudent">
+                        <label>
+                            <input name="form-field-checkbox" type="checkbox" class="ace" ng-click="item.selected = !item.selected" ng-checked="item.selected">
+                            <span class="lbl"> {{item.Name}}</span>
+                        </label>
+                    </div>
+
+                    <div class="tip" ng-class="{'hide':testStudent!=null && testStudent.length != 0}">没有符合的学生！</div>
+
+                </div>
+                <p>
+                    Tip：<br />
+                    没有缴费的学生不可以安排考试！<br />
+                    没有通过上一科考试的同学，不可以参加下一科考试！
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

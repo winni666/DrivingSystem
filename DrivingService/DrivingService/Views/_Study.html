@@ -1,0 +1,124 @@
+﻿
+<div class="page-content test_add" id="study_add">
+    <div class="page-header">
+        <h1>
+            学车管理
+            <small>
+                <i class="icon-double-angle-right"></i>
+                安排学车
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div style="margin-bottom:10px;">
+                <form class="form-search">
+                    <span class="input-icon align-middle">
+                        <input type="date" ng-model="date" class="search-query" placeholder="日期" style="font-size:13px;height:30px;">
+                    </span>
+                    <span>
+                        <select ng-model="time" style="width:185px;">
+                            <option value="">时间段</option>
+                            <option value="上午">上午</option>
+                            <option value="下午">下午</option>
+                        </select>
+                    </span>
+                    <span>
+                        <select ng-model="driving" style="width:185px;">
+                            <option value="">驾驶证类型</option>
+                            <option value="A1">A1</option>
+                            <option value="A2">A2</option>
+                            <option value="A3">A3</option>
+                            <option value="B1">B1</option>
+                            <option value="B2">B2</option>
+                            <option value="C1">C1</option>
+                            <option value="C2">C2</option>
+                            <option value="C3">C3</option>
+                            <option value="C4">C4</option>
+                            <option value="D">D</option>
+                            <option value="E">E</option>
+                            <option value="F">F</option>
+                            <option value="M">M</option>
+                            <option value="N">N</option>
+                            <option value="P">P</option>
+                        </select>
+                    </span>
+                    <span>
+                        <select id="hdsfhsk" ng-model="subject" style="width:185px;">
+                            <option value="">请选择科目</option>
+                            <option value="科目二">科目二</option>
+                            <option value="科目三">科目三</option>
+                            <option value="科目四">科目四</option>
+                        </select>
+                    </span>
+
+                    <span>
+                        <select ng-model="room" style="width:185px;">
+                            <option value="">请选择场地</option>
+                            <option value="Out-1">Out-1</option>
+                            <option value="Out-2">Out-2</option>
+                        </select>
+                    </span>
+                    <button class="btn btn-sm btn-minier " style="height:28px;width:60px;" ng-click="submitStudy()">安排学车</button>
+                </form>
+                <div id="check_teacher">
+                    <div class="checkbox checkwidth selectall" ng-class="{'hide':teacherList.length == 0}">
+                        <label>
+                            请选择教练：
+                        </label>
+                    </div>
+                    <div class="checkbox checkwidth" ng-repeat="item in teacherList">
+                        <label>
+                            <input type="radio" class="ace" name="select-teacher" ng-click="item.selected = !item.selected" ng-checked="item.selected">
+                            <span class="lbl"> {{item.Teacher_Name}}</span>
+                        </label>
+                    </div>
+
+                    <div class="tip" ng-class="{'hide':teacherList!=null && teacherList.length != 0}">没有符合的教练！</div>
+
+                </div>
+                <div id="check_car">
+                    <div class="checkbox checkwidth selectall" ng-class="{'hide':carList.length == 0}">
+                        <label>
+                            请选择车辆：
+                        </label>
+                    </div>
+                    <div class="checkbox checkwidth" ng-repeat="item in carList">
+                        <label>
+                            <input type="radio" class="ace" name="select-car" ng-click="item.selected = !item.selected" ng-checked="item.selected">
+                            <span class="lbl"> {{item.car_number}}</span>
+                        </label>
+                    </div>
+
+                    <div class="tip" ng-class="{'hide':carList!=null && carList.length != 0}">没有符合的车辆！</div>
+                </div>
+
+                <div id="check_box">
+                    <div class="checkbox checkwidth selectall" ng-class="{'hide':studentList ==null || studentList.length == 0}">
+                        <label>
+                            <input name="form-field-checkbox" type="checkbox" class="ace" ng-click="toggleAll()">
+                            <span class="lbl"> 全选</span>
+                        </label>
+                    </div>
+
+                    <div class="checkbox checkwidth" ng-repeat="item in studentList">
+                        <label>
+                            <input name="form-field-checkbox" type="checkbox" class="ace" ng-click="item.selected = !item.selected" ng-checked="item.selected">
+                            <span class="lbl"> {{item.Name}}</span>
+                        </label>
+                    </div>
+
+                    <div class="tip" ng-class="{'hide':studentList!=null && studentList.length != 0}">没有符合的学生！</div>
+
+                </div>
+
+
+                <p>
+                    Tip：<br />
+                    没有可选的教练/车辆/学生?<br />
+                    试着换个日期，时间，科目，驾照类型。<br />
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

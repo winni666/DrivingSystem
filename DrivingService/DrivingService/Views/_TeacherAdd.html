@@ -1,0 +1,104 @@
+﻿
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            教练管理
+            <small>
+                <i class="icon-double-angle-right"></i>
+                增加教练
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+
+    <div class="row">
+        <div class="col-xs-12">
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 教练名： </label>
+                    <div class="col-sm-9">
+                        <input ng-model="teachername" type="text" id="carNumber"  class="col-xs-10 col-sm-5">
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">所教驾驶证：</label>
+                    <div class="col-sm-9">
+                        <div class="col-xs-10 col-sm-5" style="padding: 0;">
+                            <select class="form-control" ng-model="teacherdriving" required>
+                                <option value="">请选择</option>
+                                <option value="A1">A1</option>
+                                <option value="A2">A2</option>
+                                <option value="A3">A3</option>
+                                <option value="B1">B1</option>
+                                <option value="B2">B2</option>
+                                <option value="C1">C1</option>
+                                <option value="C2">C2</option>
+                                <option value="C3">C3</option>
+                                <option value="C4">C4</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">所教科目：</label>
+                    <div class="col-sm-9">
+                        <div class="col-xs-10 col-sm-5" style="padding: 0;">
+                            <select class="form-control" ng-model="teachersubject" required>
+                                <option value="">请选择</option>
+                                <option value="科目二">科目二</option>
+                                <option value="科目三">科目三</option>
+                                <option value="科目四">科目四</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">所教科目：</label>
+                    <div class="col-sm-9">
+                        <div class="col-xs-10 col-sm-5" style="padding: 0;">
+                            <select class="form-control" ng-model="teachertime" required>
+                                <option value="">请选择</option>
+                                <option value="上午">上午</option>
+                                <option value="下午">下午</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 身份证号： </label>
+                    <div class="col-sm-9">
+                        <input ng-model="teachernumber" type="text" class="col-xs-10 col-sm-5">
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                
+                <div class="form-group">
+                    <label class="col-sm-3 control-label no-padding-right">备注：</label>
+                    <div class="col-sm-9">
+                        <div class="col-xs-10 col-sm-5" style="padding: 0;">
+                            <textarea ng-model="teacherremark" class="autosize-transition form-control" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 52px;"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-4"></div>
+                <div class="space-4"></div>
+                <div class="clearfix form-actions">
+                    <div class="col-md-offset-3 col-md-9">
+                        <button class="btn btn-info" type="button" ng-click="add()">
+                            <i class="icon-ok bigger-110"></i>
+                            添加
+                        </button>
+                        &nbsp; &nbsp; &nbsp;
+                        <button class="btn" type="reset">
+                            <i class="icon-undo bigger-110"></i>
+                            重置
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+﻿<div class="page-content" id="Student_Is">
+    <div class="page-header">
+        <h1>
+            证件管理
+            <small>
+                <i class="icon-double-angle-right"></i>
+                驾驶证查询
+            </small>
+        </h1>
+    </div>
+    <div style="margin-bottom:10px;">
+        <form class="form-search">
+            <span class="input-icon align-middle">
+                <input type="text" class="search-query" ng-model="student" placeholder="学员姓名" style="font-size:13px;height:30px;">
+                <i class="icon-remove" style="left:158px;" ng-click="clear()" ng-show="student!=''&&student!=null"></i>
+            </span>
+            <!--<span>
+                <select ng-init="all='0'" ng-model="all" style="width:185px;">
+                    <option value="0">全部</option>
+                    <option value="1">未领证</option>
+
+                </select>
+            </span>-->
+            <button class="btn btn-sm" onclick="return false;" style="height:28px;" ng-click="select()">查询</button>
+        </form>
+    </div>
+
+    <table id="sample-table-1" class="table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>档案编号</th>
+                <th>姓名</th>
+                <!--<th>性别</th>-->
+                <th>身份证号</th>
+                <th>驾驶证类型</th>
+                <th>领证日期</th>
+                <th>发证人</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr ng-repeat="item in drivingList">
+                <td>{{item.Driving_Card}}</td>
+                <td>{{item.Name}}</td>
+                <!--<td>{{item.Sex}}</td>-->
+                <td >{{item.Card_Id}}</td>
+                <td>{{item.Driving_Type}}</td>
+                <td>{{item.Get_Date}}</td>
+                <td>{{item.Gave_User}}</td>
+                <td>
+                    <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+                        <button class="btn-xs Physical" ng-class="{'hide':item.Get_Date!=null}" ng-click="getDriving(item.Driving_Card, item.Card_Id)">领证</button>
+                        <p ng-class="{'hide':item.Get_Date==null}">已领证</p>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
